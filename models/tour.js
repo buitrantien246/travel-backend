@@ -4,7 +4,10 @@ const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Tour extends Model {
     static associate(models) {
-      Tour.belongsTo(models.Category, { foreignKey: "category_id", as: "category" });
+      Tour.belongsTo(models.Category, {
+        foreignKey: "category_id",
+        as: "category",
+      });
       Tour.hasMany(models.Variant, { foreignKey: "tour_id", as: "variants" });
       Tour.hasMany(models.Order, { foreignKey: "tour_id", as: "orders" });
       Tour.hasMany(models.TourImage, { foreignKey: "tour_id", as: "images" });
@@ -25,6 +28,7 @@ module.exports = (sequelize, DataTypes) => {
       sequelize,
       modelName: "Tour",
       tableName: "Tours",
+      freezeTableName: true,
       timestamps: true,
     },
   );

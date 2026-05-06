@@ -6,8 +6,14 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Order.belongsTo(models.User, { foreignKey: "user_id", as: "user" });
       Order.belongsTo(models.Tour, { foreignKey: "tour_id", as: "tour" });
-      Order.belongsTo(models.Variant, { foreignKey: "variant_id", as: "variant" });
-      Order.hasMany(models.Passenger, { foreignKey: "order_id", as: "passengers" });
+      Order.belongsTo(models.Variant, {
+        foreignKey: "variant_id",
+        as: "variant",
+      });
+      Order.hasMany(models.Passenger, {
+        foreignKey: "order_id",
+        as: "passengers",
+      });
     }
   }
   Order.init(
@@ -33,6 +39,7 @@ module.exports = (sequelize, DataTypes) => {
       sequelize,
       modelName: "Order",
       tableName: "orders",
+      freezeTableName: true,
       timestamps: true,
     },
   );

@@ -4,7 +4,10 @@ const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Passenger extends Model {
     static associate(models) {
-      Passenger.belongsTo(models.Order, { foreignKey: "order_id", as: "order" });
+      Passenger.belongsTo(models.Order, {
+        foreignKey: "order_id",
+        as: "order",
+      });
     }
   }
   Passenger.init(
@@ -22,6 +25,7 @@ module.exports = (sequelize, DataTypes) => {
       sequelize,
       modelName: "Passenger",
       tableName: "passengers",
+      freezeTableName: true,
       timestamps: true,
     },
   );
